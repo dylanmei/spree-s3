@@ -1,0 +1,29 @@
+h1. Spree + Amazon S3
+
+Amazon S3 integration for your Spree (v0.30.1) store, using the aws-s3 gem. Normally, Spree saves all image assets to disk. This extension will pass all product and taxon assets along to your S3 bucket instead.
+
+h3. Installation 
+
+Add to project's Gemfile:
+<pre>gem 'spree_s3', '>=0.1', :git => 'git://github.com/dylanmei/spree-s3.git'
+</pre>
+
+Run from project's root:
+<pre>bundle install
+rake spree_s3:install
+</pre>
+
+h3. Configuration 
+
+Create config/s3.yml within your Spree site.
+
+<pre>production:
+	key: [your access key]
+	secret: [your access secret]
+	bucket: [your s3 bucket name]
+</pre>
+
+Or use config vars. For Heroku, setting these vars can be as simple as
+<pre>$ cd mystore
+$ heroku config:add S3_KEY=[your access key] S3_SECRET=[your access secret] S3_BUCKET=[your s3 bucket name]
+</pre>
