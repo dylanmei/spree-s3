@@ -23,7 +23,7 @@ module S3
       file = File.read(path) if File.exist? path
       if file
         yaml = YAML.load(ERB.new(file).result)[::Rails.env]
-        load_s3_config yaml.with_indifferent_access
+        load_s3_config yaml.with_indifferent_access if yaml
       end
     end
 
