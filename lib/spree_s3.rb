@@ -1,6 +1,5 @@
 require 'spree_core'
 require 'spree_s3_hooks'
-require 's3'
 
 module SpreeS3
   class Engine < Rails::Engine
@@ -8,8 +7,16 @@ module SpreeS3
     config.autoload_paths += %W(#{config.root}/lib)
 
     def self.activate
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
-        Rails.env.production? ? require(c) : load(c)
+      S3.load_s3_yaml
+
+      Image.class_eval do
+        extend S3::Attachment
+        sends_files_to_s3 if S3.enabled?
+      end
+
+      Taxon.class_eval do
+        extend S3::Attachment
+        sends_files_to_s3 if S3.enabled?
       end
     end
 
