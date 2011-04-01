@@ -2,6 +2,10 @@ h1. Spree + Amazon S3
 
 Amazon S3 integration for your Spree (v0.30.1) store, using the aws-s3 gem. Normally, Spree saves all image assets to disk. This extension will pass all product and taxon assets along to your S3 bucket instead.
 
+h3. Project has moved
+
+<pre>http://github.com/thoughtful/spree-s3</pre>
+
 h3. Installation 
 
 Add to project's Gemfile:
